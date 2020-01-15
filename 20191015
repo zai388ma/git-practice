@@ -1,0 +1,45 @@
+###项目学习笔记
+- promise和then的用法
+- [关于avue](https://juejin.im/post/5b471e085188251aad20fd04)
+- [箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [业务代码如何判断生产/开发环境]()
+- 加括号的函数体返回对象字面量表达式，如：params => ({foo: bar})
+- 箭头函数支持剩余参数和默认参数：
+
+(param1, param2, ...rest) => { statements }
+
+ (param1 = defaultValue1, param2, …, paramN = defaultValueN) => { 
+                  statements }
+- 箭头函数支持参数列表解构：
+let f = ([a, b] = [1, 2], {x: c} = {x: a + b}) => a + b + c;
+               f();  // 6
+- 引入箭头函数有两个方面的作用：更简短的函数并且不绑定this。
+- 箭头函数不会创建自己的this,它只会从自己的作用域链的上一层继承this。因此，在下面的代码中，传递给setInterval的函数内的this与封闭函数中的this值相同：
+- [JavaScript 中 apply 、call 的详解](https://github.com/lin-xin/blog/issues/7
+- ### 项目学习笔记
+- 匿名函数有三种写法，其中（function(形参){函数体}）.(实参)完成函数的自调用。
+- 在ES6还有一种新的语法可以编写匿名函数，是箭头函数。
+
+无参箭头函数  ()=>{函数体}或 _ =>{函数体}
+当函数体中只有一条语句时，可以省略大括号。当函数体中只有一条返回值语句时可以省略大括号和return关键字。
+- 所谓回调函数，是指一个函数A作为参数传递给一个函数B，然后在B的函数体中调用函数A。
+此时我们称A为回调函数。
+- BASE_URL是后台的地址加端口；
+- 通过字面量{}创建的对象是Object对象的实例
+- 路由是一个目录 ，是指把该目录的组件都加载进来吗？可能这个写法不规范。
+- vuex的mapGetters(占坑)
+- mounted：生命周期函数 ，在某个点执行。
+- <router-view>可以通过<router-link>标签来跳转到相应路径，然后再<router-view>标签来渲染。
+- $emit(方法名，传入该方法的参数)
+- 安装sass命令：npm i --save-dev sass@1.22.0 (其中i是install的意思)
+### 项目迁移
+- [Git拉取分支到本地](https://blog.csdn.net/carfge/article/details/79691360)
+- ###项目迁移记录
+- 用过了就知道了，git pull = git fetch + git merge
+  fetch和push命令可以分别对远程分支进行fetch和push操作，而pull不是直接跟远程分支对话的。
+  fetch同pull的区别在于：git fetch:是从远程获取最新版本到本地，不会自动merge
+  而git pull是从远程获取最新版本并merge到本地仓库
+  从安全角度出发，git fetch比git pull更安全，因为我们可以先比较本地与远程的区别后，选择性的合并。
+  git push 默认推送到master。
+
+
