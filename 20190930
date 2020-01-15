@@ -1,0 +1,141 @@
+###vue框架学习笔记
+- vue router是什么。
+
+这里的路由并不是指我们平时所说的硬件路由器，这里的路由就是SPA（单页应用）的路径管理器。再通俗的说，vue-router就是WebApp的链接路径管理系统。vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单页面应用中，则是路径之间的切换，也就是组件的切换。路由模块的本质 就是建立起url和页面之间的映射关系。至于我们为啥不能用a标签，这是因为用Vue做的都是单页应用，就相当于只有一个主的index.html页面，所以你写的<a></a>标签是不起作用的，你必须使用vue-router来进行管理
+
+- vue-router的实现原理
+
+SPA(single page application):单一页面应用程序，只有一个完整的页面；它在加载页面时，不会加载整个页面，而是只更新某个指定的容器中内容。单页面应用(SPA)的核心之一是: 更新视图而不重新请求页面;vue-router在实现单页面前端路由时，提供了两种方式：Hash模式和History模式；根据mode参数来决定采用哪一种方式。
+
+[详细内容](https://juejin.im/entry/5b1fd2f0f265da6e410e18b3)
+- package-lock.json文件的作用
+
+根据官方文档，这个package-lock.json 是在 `npm install`时候生成一份文件，用以记录当前状态下实际安装的各个npm package的具体来源和版本号。
+
+它有什么用呢？因为npm是一个用于管理package之间依赖关系的管理器，它允许开发者在pacakge.json中间标出自己项目对npm各库包的依赖。你可以选择以如下方式来标明自己所需要库包的版本
+
+这里举个例子：
+
+"dependencies": {
+ "@types/node": "^8.0.33",
+},
+
+这里面的 向上标号^是定义了向后（新）兼容依赖，指如果 types/node的版本是超过8.0.33，并在大版本号（8）上相同，就允许下载最新版本的 types/node库包，例如实际上可能运行npm install时候下载的具体版本是8.0.35。波浪号
+
+大多数情况这种向新兼容依赖下载最新库包的时候都没有问题，可是因为npm是开源世界，各库包的版本语义可能并不相同，有的库包开发者并不遵守严格这一原则：相同大版本号的同一个库包，其接口符合兼容要求。这时候用户就很头疼了：在完全相同的一个nodejs的代码库，在不同时间或者不同npm下载源之下，下到的各依赖库包版本可能有所不同，因此其依赖库包行为特征也不同有时候甚至完全不兼容。
+
+因此npm最新的版本就开始提供自动生成package-lock.json功能，为的是让开发者知道只要你保存了源文件，到一个新的机器上、或者新的下载源，只要按照这个package-lock.json所标示的具体版本下载依赖库包，就能确保所有库包与你上次安装的完全一样。
+
+
+原来package.json文件只能锁定大版本，也就是版本号的第一位，并不能锁定后面的小版本，你每次npm install都是拉取的该大版本下的最新的版本，为了稳定性考虑我们几乎是不敢随意升级依赖包的，这将导致多出来很多工作量，测试/适配等，所以package-lock.json文件出来了，当你每次安装一个依赖的时候就锁定在你安装的这个版本。
+
+那如果我们安装时的包有bug，后面需要更新怎么办？
+
+ 
+
+在以前可能就是直接改package.json里面的版本，然后再npm install了，但是5版本后就不支持这样做了，因为版本已经锁定在package-lock.json里了，所以我们只能npm install xxx@x.x.x  这样去更新我们的依赖，然后package-lock.json也能随之更新。
+
+ 
+
+假如我已经安装了jquery 2.1.4这个版本，从git更新了package.json和package-lock.json，我npm install能覆盖掉node_modules里面的依赖吗?
+
+ 
+
+其实我也有这个疑问，所以做了测试，在直接更新package.json和package-loc.json这两个文件后，npm install是可以直接覆盖掉原先的版本的，所以在协作开发时，这两个文件如果有更新，你的开发环境应该npm install一下才对。
+
+ 
+ 其实用一句话来概括很简单，就是锁定安装时的包的版本号，并且需要上传到git，以保证其他人在npm install时大家的依赖能保证一致
+
+- vue,js,html三种文件之间是怎样的关系？
+angular可以直接引用html作为组件。vue为了实现更好的封装才推出了vue文件，你可以在vue文件里实现一个功能，这个文件可以包含css、js、html。 你可以直接这么认为vue文件就是html文件，唯一的区别就是浏览器不认识vue文件。
+- 什么是webpack？
+
+WebPack可以看做是模块打包机：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其打包为合适的格式以供浏览器使用。
+
+- 为什要使用WebPack
+
+今的很多网页其实可以看做是功能丰富的应用，它们拥有着复杂的JavaScript代码和一大堆依赖包。为了简化开发的复杂度，前端社区涌现出了很多好的实践方法
+
+a:模块化，让我们可以把复杂的程序细化为小的文件;
+
+b:类似于TypeScript这种在JavaScript基础上拓展的开发语言：使我们能够实现目前版本的JavaScript不能直接使用的特性，并且之后还能能装换为JavaScript文件使浏览器可以识别；
+
+c:scss，less等CSS预处理器
+
+.........
+
+这些改进确实大大的提高了我们的开发效率，但是利用它们开发的文件往往需要进行额外的处理才能让浏览器识别,而手动处理又是非常反锁的，这就为WebPack类的工具的出现提供了需求。
+- npm警告 warn  试了更新npm到最新版本 npm install -g npm并不管用
+
+ ajv-keywords@2.1.1 requires a peer of ajv@^5.0.0 but none is installed. You must install peer dependencies yourself.
+
+- 入口文件和require
+webpack根据代码中的require将引用到的模块打包在一起，而入口文件就是最初的require所在的文件。
+- 如何使用element-ui搭建vue工程 
+- 什么是RPC，是指远程过程调用。就是要像调用本地函数一样调用远程函数。在本地调用中，函数体是直接通过函数指针来指定的，我们调用函数A,编译器就自动帮我们调用它响应
+的函数指针。但在远程调用中，函数指针是不行的，因为两个进程的地址空间是完全不一样的。在本地调用中，我们只需要把参数压到栈里，让函数自己去栈里读即可。但在远程
+调用中，客户端和服务端是不同的进程，不能通过内存在传递参数。大部分RPC框架都使用TCP协议，但也有能当传输层的其他协议。
+
+- vue中render函数的使用（占坑）
+[详情](https://juejin.im/post/5a715ec96fb9a01cad7c7958)
+- 如何学习node.js [网址](https://i5ting.github.io/How-to-learn-node-correctly/#104)
+- vue.config.js文件的作用 (占坑)
+- Vue.use()和Vue.components
+- ts typescript文件和xxx.d.ts文件的作用(占坑)
+
+d.ts就是TypedDefinition 类型定义文件，用来定义类型信息以及接口规范。TypeScript的类型机制可以有效杜绝由变量类型引起的误用问题。
+想要在ts使用js里面的方法，不一定要有类型定义。
+但如果没有类型定义文件， 你在编码的过程中，编辑器不会给你方法的提示，你想找API的时候也没有对应的文档。
+d.ts 是从你写的TS、代码中分离出来的非javascript的东西，类似于定义接口规范， 由编译器生成。
+
+如果想用早期的JS library，是没有类型定义信息的，这个时候为了使用方便我们就需要创建一个对应的d.ts文件。
+
+.ts 表示你的代码就是用 ts 写的。
+但这种代码最后会编译成 .js 的 js 代码，供他人使用。这个时候，类型信息就丢失了。所以 ts 编译器会自动根据 .ts 中的信息，生成对外的 .d.ts 文件，和生成的 js 文件搭配使用。其中，js 文件是给运行引擎用的，而 .d.ts 文件是给 IDE（智能编辑器）写代码时参考用的。
+
+另一种情况是，你的代码不是用 ts 写的，只是希望最后给别人用时能有类型信息作为辅助，那么这种情况下的 .d.ts 文件就需要你手写了。
+
+- node_modules文件夹，这里边就是我们项目需要的依赖包资源。
+
+- Vue.component()和Vue.use()的区别
+
+使用Vue.component()方法注册全局组件。
+第一个参数是自定义元素名称，也就是将来在别的组件中使用这个组件的标签名称。
+第二个参数是将要注册的Vue组件。例如：
+
+import Vue from 'vue'
+ // 引入loading组件 
+                   import Loading from './loading.vue';
+                   // 将loading注册为全局组件，在别的组件中通过<loading>标签使用Loading组件
+                   Vue.component('loading', Loading);
+                   
+使用Vue.use注册插件
+
+这个方法接收一个参数。这个参数必须具有install方法。Vue.use函数内部会调用参数的install方法。
+如果插件没有被注册过，那么注册成功之后会给插件添加一个installed的属性值为true。Vue.use方法内部会检测插件的installed属性，从而避免重复注册插件。
+插件的install方法将接收两个参数，第一个是参数是Vue，第二个参数是配置项options。
+在install方法内部可以添加全局方法或者属性、全局指令、mixin混入、添加实例方法、使用Vue.component()注册组件等。
+—————
+
+import Vue from 'vue';
+
+// 这个插件必须具有install方法
+const plugin = {
+  install (Vue, options) {
+    // 添加全局方法或者属性
+    Vue.myGlobMethod = function () {};
+    // 添加全局指令
+    Vue.directive();
+    // 添加混入
+    Vue.mixin();
+    // 添加实例方法
+    Vue.prototype.$xxx = function () {};
+    // 注册全局组件
+    Vue.component()
+  }
+}
+
+// Vue.use内部会调用plugin的install方法
+Vue.use(plugin);
+- [基础组件的自动全局化注册用到了 const](https://segmentfault.com/a/1190000019773184)
+                 
