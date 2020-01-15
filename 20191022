@@ -1,0 +1,52 @@
+###k8s学习笔记
+- [什么是持续集成，什么是jenkins](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)
+- Jenkins是一个开源的、提供友好操作界面的持续集成(CI)工具，起源于Hudson（Hudson是商用的），主要用于持续、自动的构建/测试软件项目、监控外部任务的运行（这个比较抽象，暂且写上，不做解释）。Jenkins用Java语言编写，可在Tomcat等流行的servlet容器中运行，也可独立运行。
+  通常与版本管理工具(SCM)、构建工具结合使用；常用的版本控制工具有SVN、GIT，构建工具有Maven、Ant、Gradle。
+  ————————————————
+  易于安装
+  不需要安装、不需要数据库，只需通过java -jar jenkins.war或部署到一个servlet容器中.
+  所有的配置都可能通过jenkins提供的web界面完成，当然如果你喜欢，也可以通过手动修改xml文件进行配置.
+  jenkins能跟踪每次构建生成哪些jar包以及使用哪个版本的jar包。
+
+- 应用放在k8s上面，虚拟机的启动以及初始化还原就不用操心了。
+- jenkins的master节点还有slave节点都是跑在k8s上面的。这样好迁移。把安装的时候的镜像和配置文件迁移走就可以了，配置文件是挂载在容器外的。
+- 基于虚机的slave节点的弊端就是太繁琐，每一个虚机要一个个布置。jenkins就是用模板和镜像，一个模板就可以支持好几个项目的持续集成。我们需要做的就是制作模板镜像。
+- 一旦启动成功之后资源会释放，等到用到的时候才会去消耗资源。
+- 在k8里面起k8,
+- 可以新增一个k8s环境，jenkins地址是k8内的。
+- 在k8内的一个端口可以访问另一个端口。
+- k8创造了一个pod的概念，为了让两个容器共享一个磁盘资源。就是一个pod。
+- jenkins流水线式玩法，写一个脚本。每个阶段都可以看日志。
+- 只需要在“云”配上k8信息，pod信息和容器信息。
+- 后期大家都只需要干一件事就是提供docker file。把提供服务的应用做出docker file
+- 对于其他语言的程序需要重新做镜像。
+- 基于k8做微服务的部署。k8上一人一套环境，类似于租户的概念，还原也很简单。14个服务：redis,PG,nacos,base(11个服务)全部都在k8s上面运行。
+- - ssh-copy-id root@10.121.73.60 。把密钥改到60这台机器上。
+  - 修改config文件在Dev/目录。每个人100个端口号，不能用重复。
+  然后./install.sh  执行完install之后可以./startup.sh 会默认建立一个命名空间，这个是来装redis nacos 和pg数据库初始化。
+  - ./port，sh可以来看端口,根据这个来修改nacos上面的地址配置。
+  - 然后./stratbase.sh命令用来起11个基础服务。
+- 想要服务停掉直接下线就行了。不需要把服务卸掉。
+- 如何进行两个项目之间的调试。
+- $ ssh-copy-id root@10.121.73.60
+  /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/c/Users/w21100/.ssh/id_rsa.pub"
+  The authenticity of host '10.121.73.60 (10.121.73.60)' can't be established.
+  ECDSA key fingerprint is SHA256:AqPaPiyaGZKh87rC8GTaNlhJFdnbKt05xoNGdNkaWOk.
+  Are you sure you want to continue connecting (yes/no)? yes
+  /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+  /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+  root@10.121.73.60's password:
+  
+  /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+  /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+  root@10.121.73.60's password:
+  Permission denied, please try again.
+  root@10.121.73.60's password:
+  
+  Number of key(s) added: 1
+  
+  Now try logging into the machine, with:   "ssh 'root@10.121.73.60'"
+  and check to make sure that only the key(s) you wanted were added.
+
+
+
