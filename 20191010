@@ -1,0 +1,42 @@
+###项目学习笔记
+- - @ 等价于 /src 这个目录，免得你写麻烦又易错的相对路径
+  - [vue实战项目](https://www.cnblogs.com/hello-wuhan/p/6961948.html) 
+  vue实例是挂载在元素上的，该实例中有一个名叫“APP”的组件，该组件通过vue-router将Hello.vue中的模板注入到App.vue的模板中。
+  - component: () => import('views/home')比在脚本开头import效果一样，区别是等点击了用到了才被加载出来
+-services文件夹是用来向后端发送请求的
+-sso就是单点登录
+- export default是为了防止全局污染，因为浏览器还不支持，所以必须要借助webpack才能发挥作用
+- beforeEach函数就相当于router对象的函数，在路由执行之前先执行beforeEach函数。
+
+- [VUE 利用webpack 给生产环境和发布环境配置不同的接口地址](https://www.cnblogs.com/moqiutao/p/8461665.html)
+### 项目学习笔记
+-  [路由拦截官方文档](https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB)
+- [JavaScript字符串函数大全](https://blog.csdn.net/cyai/article/details/4213956)
+- 因为centos默认没有sudo组，可以将你的用户指向wheel用户组, wheel用户组同样有sudo权限
+  所以在centos上可以使用如下命令添加用户组
+  root@centos-system$ sudo usermod -a -G wheel userName
+- [js判断字符串的方法](https://segmentfault.com/q/1010000002911430)
+### linux学习笔记
+- cent OS的安装工具是yum 而不是apt-get
+- [url的#符号](http://www.ruanyifeng.com/blog/2011/03/url_hash.html)
+- \#是用来指导浏览器动作的，对服务器端完全无用。所以，HTTP请求中不包括#。
+- 每一次改变#后的部分，都会在浏览器的访问历史中增加一个记录，使用"后退"按钮，就可以回到上一个位置。
+  
+  这对于ajax应用程序特别有用，可以用不同的#值，表示不同的访问状态，然后向用户给出可以访问某个状态的链接。
+  
+  值得注意的是，上述规则对IE 6和IE 7不成立，它们不会因为#的改变而增加历史记录。
+- window.location.hash这个属性可读可写。读取时，可以用来判断网页状态是否改变；写入时，则会在不重载网页的前提下，创造一条访问历史记录。
+-  onhashchange事件:这是一个HTML 5新增的事件，当#值发生变化时，就会触发这个事件。
+它的使用方法有三种：
+                window.onhashchange = func;
+          
+          　　<body onhashchange="func();">
+          
+          　　window.addEventListener("hashchange", func, false);
+- ###笔记
+- [Linux进程之如何查看进程详情？](https://juejin.im/post/5bf9213ce51d452237153c5c)
+- [什么是线程安全](https://blog.csdn.net/suifeng3051/article/details/52164267)
+- 进程和线程的主要差别在于它们是不同的操作系统资源管理方式。进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，而线程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，所以多进程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一些。但对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程。
+- export default暴露出来的就相当于一个对象，因为是default所以在其他文件import的时候可以随意命名，然后用这个命名加.去调用方法即可。
+- [vue实战项目汇总](https://www.cnblogs.com/hello-wuhan/)
+
