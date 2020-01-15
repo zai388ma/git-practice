@@ -1,0 +1,44 @@
+### 页面修改笔记
+- recursion.recursionAll(res.data.data，children,()=>ture)
+对象组成的数组的find方法：
+
+getRoleDictLabel(dictValue)
+        try{
+          let dictValues = dictValue.split(',')
+          let dictTitles = dictValues.map(dv=>{
+            return this.roleDict.find(dict=>dict.value===dv).title
+          })
+          return dictTitles.join(',')
+        }catch (e) {
+          console.error(e)
+- <template slot-scope="{row}"
+                  slot="roleId">
+          <el-tag>{{ getRoleDictLabel(row.roleId) }}</el-tag>
+        </template>    
+-     - method下面的函数既可以写：onload（）{}, 也可以写onload：function（）{}
+- <!DOCTYPE> 声明必须是 HTML 文档的第一行,位于 <html> 标签之前。
+- <!DOCTYPE> 声明不是 HTML 标签；它是指示 web 浏览器关于页面使用哪个 HTML 版本进行编写的指令。
+- 什么是元素获得焦点。
+- @click调用的方法名后可以不跟括号（）
+- textarea文本域
+- vue.js提供了一个变量$event,用来访问原生DOM事件。
+- 在father 上增加一个.capture.<div id="father" v-on:click.capture="doc">.那么当冒泡发生的时候，就会优先让father捕捉事件。
+ 点击son或者me的时候，都会优先触发它
+ -  this.$emit("increment")是用来调父组件的函数的。
+ - vue.js 里的路由相当于就是局部刷新
+ -为了实现路由，需要一个额外的库： vue-router.min.js。引入脚本：src="http://how2j.cn/study/vue-router.min.js"
+ - axios.get(url).then(function(response) {
+               self.heros= response.data; //此时还是字符串
+               self.heros = eval("("+self.heros+")");  //字符串转换为数组对象
+- | 管道 (pipeline)
+
+是 UNIX 系统，基础且重要的观念。连结上个指令的标准输出，做为下个指令的标准输入。
+who | wc -l。善用这个观念，对精简 script 有相当的帮助。
+- js里面函数的参数不需要声明类型。
+- Number() 函数把对象的值转换为数字。
+- 原生前端如何向后端发送数据？
+- slot-scope是为了获取子组件的信息
+- $emit(),$dispatch(),$broadcast(),$parent,$children,$refs,$root,$message
+- 脚手架是快速生成项目的一个工具。
+-
+        
