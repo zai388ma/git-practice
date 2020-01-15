@@ -1,0 +1,47 @@
+### 项目学习笔记
+- v-on="$listeners"是什么意思？
+- let isEdit= document.getElementsByClassName("edit-tree-node-"+newNode.id);
+            isEdit[0].querySelector('input').focus();如何理解？
+- [获取当前毫秒数](https://blog.csdn.net/qq_35087256/article/details/79934016)：Date.now()
+- blur可以是一个事件
+- [页面加载时，vue生命周期的触发顺序](https://blog.csdn.net/luo_tianhong/article/details/79552721)
+- [ElementUI中el-tree节点的操作](https://blog.csdn.net/java_xxxx/article/details/81135561)
+- [一篇全面的CSS布局学习指南](https://juejin.im/post/5b3b56a1e51d4519646204bb)
+- [iconfont要认真学习](https://juejin.im/post/5bee3c2451882532f40fc7c2)
+- background是包括内边距的，但是height指的是不包含内边距的body的高度。
+- [quill-editor相关问题](https://github.com/NextBoy)
+- [vue-quill-editor 如何用insertEmbed插入一个a标签](https://segmentfault.com/q/1010000012055453)
+- [改造vue-quill-editor：实现图片上传到服务器再插入富文本](https://github.com/NextBoy/skill/issues/2)
+- [JS中的箭头函数与this]https://juejin.im/post/5aa1eb056fb9a028b77a66fd)
+- avue-tabs组件就已经包含了对avue-form组件的封装。
+- formData上传文件同时附带其他参数。
+- 一个单文件组件中style标签可以不知有一个。
+- [vue中的css作用域、vue中的scoped坑点](https://www.cnblogs.com/goloving/p/9119460.html)
+- height设为100%之后滚动条的问题。
+- 为avue-crud组建的表格增加滚动条：在option对象内增加height:"auto"
+- 在组件中，来自store的数据只能读取，不能手动改变，改变store中数据的唯一途径就是显式的提交mutations（Vuex的第二个字段）.
+- 数据保存在Vuex选项的state字段内
+- avue是elementUI的封装。
+- 
+### 项目学习笔记
+- 清除了谷歌浏览器中该网站的密码，对于登出请求会有影响吗？
+- 为了防止数据重复提交，加入了防重提交机制，rowSave方法和rowUpdate方法返回done用于关闭表单方法和loading用于关闭禁止的表单不关闭表单，可以用用试一下。
+- 深入理解vue 修饰符sync【 vue sync修饰符示例】 - 简书
+- js中对象中的属性之间一定要用,分隔。
+- 一个指令定义对象可以提供如下几个钩子函数 (均为可选)：
+  
+  bind：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
+  
+  inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。
+  
+  update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。
+- console.log('editor change!', quill, html, text)
+- ###项目学习笔记
+- watch:{ selectionList(){
+if(){} else(){}}
+}
+- avue-crud组件中查看按钮需要在option中写出viewButton:true，在perimissionList里面进一步控制。
+- 滚动条到底是哪里来的？浏览器？webkit?
+- "\\是什么意思 可以让反斜杠发挥应有的作用而不会报错？
+- avue-crud组件中type:‘tree’这个属性必须要有获取的请求结果才能在查看和编辑中看到该字段。
+- avue的编辑怎么写的，就是控制弹窗的显隐。
