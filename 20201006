@@ -1,0 +1,43 @@
+- Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。
+是一个意在提高开发者效率,提高JS原生方法性能的JS库
+- 通过注入路由器，我们可以在任何组件内通过 this.$router 访问路由器，也可以通过 this.$route 访问当前路由.
+- 当你点击 <router-link> 时，这个方法会在内部调用，所以说，点击 <router-link :to="..."> 等同于调用 router.push(...)。
+- router.replace(location, onComplete?, onAbort?)  .跟 router.push 很像，唯一的不同就是，它不会向 history 添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。
+- 你也许注意到 router.push、 router.replace 和 router.go 跟 window.history.pushState、 window.history.replaceState 和 window.history.go好像， 实际上它们确实是效仿 window.history API 的。
+- // 带查询参数，变成 /register?plan=private
+  router.push({ path: 'register', query: { plan: 'private' }})
+- [vue-router query和params传参(接收参数)$router $route的区别](https://segmentfault.com/a/1190000012735168)
+- vue-router 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
+- Person1.call(this) 的作用就是使用 Person1 对象代替 this 对象.[查看详情](https://github.com/lin-xin/blog/issues/7)
+- 请求接口的方法是不是要写在主项目里面？
+   在子项目中新建一个axios的实例
+- Vue组件中data选项为什么必须是函数
+- [箭头函数官方文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+### CSS学习笔记
+- [div在上级div中居中问题](https://blog.csdn.net/kouwoo/article/details/40294607)
+- 项目中除了public目录不打包 其他的目录都打包。
+- 如何让img标签在div中居中：div和img需要先具有宽高，div中text-align 、line-height，img中需要vertica-align:middle;
+- 父组件往子组件中传递图片路径的时候，如果图片是位于src/assets目录下，需要在父组件的data中将路径添写为require("路径名")，然后再
+向子组件中传递这个变量，传递变量的时候记得加：，不加冒号识别为常量处理了，在子组件接收路径的地方也要加冒号；
+- display:block特点：独占一行，多个display为block的元素另起一行，默认情况下，block元素宽度自动填满其父元素宽度。
+- block元素可以设置width，height属性，div元素即使设置了宽度，仍然是独占一行。block元素可以设置margin和padding属性。
+- display：inline(留坑)
+- 灵活运用margin和padding
+- assets:在项目编译的过程中会被webpack处理解析为模块依赖，只支持相对路径的形式，如< img src=”./logo.png”>和background:url(./logo.png),”./logo.png”是相对资源路径，将有webpack解析为模块依赖
+  　static：在这个目录下文件不会被webpack处理,简单就是说存放第三方文件的地方，不会被webpack解析。他会直接被复制到最终的打包目录(默认是dist/static)下。必须使用绝对路径引用这些文件，这是通过config.js文件中的build.assetsPublic和build.assertsSubDirectory链接来确定的。任何放在static/中文件需要以绝对路径的形式引用：/static[filename]
+  　根据webpack的特性，总的来说就是static放不会变动的，第三档的文件，asserts放可能会变动的文件
+  ————————————————
+  版权声明：本文为CSDN博主「乐橙Web」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+  原文链接：https://blog.csdn.net/mr_yanyan/article/details/78783091
+- 搞清楚了，正确的应该是只要父级元素=设置了position值（absolute或者relative），那么子元素的position都是以父级元素来定位的。
+  
+  回答：
+  其实绝对定位absolute的参照对象是“离它最近的已定位的祖先元素”，这句话里有两个关键，一个是“离它最近的祖先元素”，意思是那个参照元素不一定是父元素，也可以是它的爷爷、爷爷的爷爷等等，如果它的祖先里同时有2个及以上的定位元素，就参照离它最近的一个元素定位还有一个是“已定位”，这个定位也不一定非要是相对定位，也可以是绝对定位，为什么一般都是用相对定位呢，因为相对定位的特性是虽然它定位了，就算给了偏移量它离开了原来的地方，但是它原来占的地方也不会让出来的，这样的好处是原来在它周围的其他元素不会因为它的离开而改变位置而使页面乱套，所以用相对定位是非常合适的（如果你另有其他需要，祖先元素绝对定位也不是不可以）
+- [CSS3鼠标放上去旋转代码](https://www.cnblogs.com/agansj/p/8022910.html)
+- 让两张图片重叠，可以两个图片同级，里面的图片用绝对定位，在父级元素一定要设置position:relative
+- [如何让图片垂直居中](https://www.html.cn/qa/css3/12938.html)
+- https://segmentfault.com/a/1190000014116655 
+css中居中用法
+- span是div的子元素，点击span的时候，发生了事件冒泡，响应在了span的父元素div上，所以对onclick事件的响应应该是父元素，
+- margin：auto是个居中的好办法
+- 高度和宽度应该是包含了padding  ，肯定不包含margin。
